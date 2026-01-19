@@ -1,0 +1,14 @@
+<div class="p-6">
+  <h2 class="text-xl font-bold mb-4">數據概覽</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @for (item of dashboard.data(); track item.id) {
+      <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl shadow-sm">
+          <p class="text-sm text-blue-600">{{ item.name }}</p>
+          <p class="text-2xl font-bold">{{ item.value }}</p>
+      </div>
+    }
+  </div>
+  <button (click)="dashboard.addData()" class="mt-4 px-4 py-2 bg-black text-white rounded-lg">
+    新增測試數據
+  </button>
+</div>
