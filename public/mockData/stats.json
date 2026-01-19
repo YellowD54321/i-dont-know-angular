@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "總瀏覽量", "value": "128,430", "trend": 12.5, "icon": "trending_up" },
+  { "id": 2, "name": "新註冊用戶", "value": "1,204", "trend": -2.4, "icon": "person_add" },
+  { "id": 3, "name": "平均轉換率", "value": "3.24%", "trend": 0.8, "icon": "shopping_cart" }
+]
