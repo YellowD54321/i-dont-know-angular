@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Task, SubTask } from '../models/task.model';
 
 const STORAGE_KEY = 'task-manager-tasks';
+const DRAFT_KEY = 'task-manager-draft';
 
 @Injectable({
   providedIn: 'root',
@@ -93,6 +94,24 @@ export class TaskStorageService {
       content,
       completed: false,
     };
+  }
+
+  saveDraft(draft: Partial<Task> & { id?: string }): void {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  }
+
+  getDraft(): (Partial<Task> & { id?: string }) | null {
+    const stored = localStorage.getItem(DRAFT_KEY);
+    if (!stored) return null;
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return null;
+    }
+  }
+
+  clearDraft(): void {
+    localStorage.removeItem(DRAFT_KEY);
   }
 }
 

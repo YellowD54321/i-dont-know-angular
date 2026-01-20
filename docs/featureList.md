@@ -51,9 +51,9 @@ src/app/
 - [ ] `/tasks/:id/edit` - 編輯現有任務
 
 ### 2. LocalStorage 持久化
-- [ ] 讀取/寫入任務列表到 LocalStorage
-- [ ] 自動存檔草稿（搭配 `debounceTime`）
-- [ ] 產生唯一 ID（使用 `crypto.randomUUID()`）
+- [x] 讀取/寫入任務列表到 LocalStorage
+- [x] 自動存檔草稿（搭配 `debounceTime`）
+- [x] 產生唯一 ID（使用 `crypto.randomUUID()`）
 
 ### 3. 任務列表頁
 - [ ] 顯示所有任務
@@ -88,10 +88,10 @@ src/app/
 > 依照依賴關係排序，建議按順序執行
 
 ### 步驟 1：定義 Task 介面與 TaskStorageService
-- [ ] 在 `models/task.model.ts` 定義 `Task` 和 `SubTask` 介面
-- [ ] 建立 `services/task-storage.ts` 處理 LocalStorage CRUD
-- [ ] 實作 `getAllTasks()`, `getTaskById()`, `saveTask()`, `deleteTask()` 方法
-- [ ] 使用 `crypto.randomUUID()` 產生唯一 ID
+- [x] 在 `models/task.model.ts` 定義 `Task` 和 `SubTask` 介面
+- [x] 建立 `services/task-storage.ts` 處理 LocalStorage CRUD
+- [x] 實作 `getAllTasks()`, `getTaskById()`, `saveTask()`, `deleteTask()` 方法
+- [x] 使用 `crypto.randomUUID()` 產生唯一 ID
 
 > **React 對照：** 這就像建立一個 custom hook 來封裝 localStorage 操作。
 
