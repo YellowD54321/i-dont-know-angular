@@ -103,10 +103,20 @@ src/app/
 
 > **React 對照：** 類似 React Router 的 `<Route path="/tasks/:id/edit" element={<TaskForm />} />`
 
-### 步驟 3：初始化 Reactive Forms 環境
-- [ ] 在 `app.config.ts` 或組件中引入 `ReactiveFormsModule`
+### 步驟 3：初始化 Reactive Forms 環境（Standalone Components 架構）
+- [x] 在需要使用表單的組件中引入 `ReactiveFormsModule`（透過組件裝飾器的 `imports` 陣列）
 
-> **React 對照：** 這就像是在你的 Context Provider 中準備好 `useForm` 的基礎環境。
+```typescript
+// task-form.ts - Standalone 組件範例
+@Component({
+  standalone: true,
+  imports: [ReactiveFormsModule],  // 👈 直接在組件層級引入
+  // ...
+})
+export class TaskForm { }
+```
+
+> **React 對照：** 在 Standalone 架構下，這更像是直接 `import` 需要的模組，而非在全域 Context Provider 中設定。每個組件自己管理依賴，類似 React 的模組化方式。
 
 ### 步驟 4：建立任務列表頁組件
 - [ ] 建立 `task-list` 組件
