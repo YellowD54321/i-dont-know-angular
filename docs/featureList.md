@@ -46,9 +46,9 @@ src/app/
 ## 🎯 功能清單 (Feature List)
 
 ### 1. 路由架構
-- [ ] `/tasks` - 任務列表頁
-- [ ] `/tasks/new` - 新增任務
-- [ ] `/tasks/:id/edit` - 編輯現有任務
+- [x] `/tasks` - 任務列表頁
+- [x] `/tasks/new` - 新增任務
+- [x] `/tasks/:id/edit` - 編輯現有任務
 
 ### 2. LocalStorage 持久化
 - [x] 讀取/寫入任務列表到 LocalStorage
@@ -96,10 +96,10 @@ src/app/
 > **React 對照：** 這就像建立一個 custom hook 來封裝 localStorage 操作。
 
 ### 步驟 2：設定路由
-- [ ] 在 `app.routes.ts` 設定三個路由
-- [ ] `/tasks` → TaskListComponent
-- [ ] `/tasks/new` → TaskFormComponent
-- [ ] `/tasks/:id/edit` → TaskFormComponent
+- [x] 在 `app.routes.ts` 設定三個路由
+- [x] `/tasks` → TaskListComponent
+- [x] `/tasks/new` → TaskFormComponent
+- [x] `/tasks/:id/edit` → TaskFormComponent
 
 > **React 對照：** 類似 React Router 的 `<Route path="/tasks/:id/edit" element={<TaskForm />} />`
 
