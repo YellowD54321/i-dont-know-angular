@@ -65,8 +65,8 @@ src/app/
 - [x] 基礎欄位：標題
 - [x] 基礎欄位：描述
 - [x] 基礎欄位：優先級（Select）
-- [ ] **動態子任務 (Sub-tasks)**：可以動態新增/刪除多個子任務列
-- [ ] **標籤系統 (Tags)**：輸入標籤並按 Enter 加入（處理陣列數據）
+- [x] **動態子任務 (Sub-tasks)**：可以動態新增/刪除多個子任務列
+- [x] **標籤系統 (Tags)**：輸入標籤並按 Enter 加入（處理陣列數據）
 
 ### 5. 表單提交流程
 - [ ] 提交後導航回列表頁
@@ -145,11 +145,11 @@ taskForm = this.fb.group({
 ```
 
 ### 步驟 6：實作動態欄位 (FormArray) + 標籤系統
-- [ ] 建立一個「新增子任務」按鈕
-- [ ] 點擊時向 `subTasks` 這個 `FormArray` push 新的 `FormGroup`
-- [ ] 在 HTML 中使用 `@for` 遍歷 `subTasks.controls`
-- [ ] 使用 `formControlName` 綁定
-- [ ] 實作標籤輸入框，按 Enter 加入標籤到 `tags` FormArray
+- [x] 建立一個「新增子任務」按鈕
+- [x] 點擊時向 `subTasks` 這個 `FormArray` push 新的 `FormGroup`
+- [x] 在 HTML 中使用 `@for` 遍歷 `subTasks.controls`
+- [x] 使用 `formControlName` 綁定
+- [x] 實作標籤輸入框，按 Enter 加入標籤到 `tags` FormArray
 
 ### 步驟 7：自定義驗證器 (Custom Validators)
 - [ ] 寫一個 Function 來檢查標題長度
