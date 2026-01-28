@@ -1,2 +1,55 @@
-<p>task-form works!</p>
+<div class="task-form-container">
+  <h2>任務表單</h2>
 
+  <form [formGroup]="taskForm">
+    <!-- 標題欄位 (FormControl) -->
+    <div class="form-field">
+      <label for="title">標題</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="請輸入任務標題"
+      />
+    </div>
+
+    <!-- 描述欄位 (FormControl) -->
+    <div class="form-field">
+      <label for="description">描述</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="請輸入任務描述"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <!-- 優先級欄位 (FormControl) -->
+    <div class="form-field">
+      <label for="priority">優先級</label>
+      <select id="priority" formControlName="priority">
+        <option value="low">低</option>
+        <option value="medium">中</option>
+        <option value="high">高</option>
+      </select>
+    </div>
+
+    <!-- 子任務區塊 (FormArray) - 後續步驟實作 -->
+    <div class="form-field">
+      <label>子任務</label>
+      <p class="placeholder-text">（將在步驟6實作動態新增功能）</p>
+    </div>
+
+    <!-- 標籤區塊 (FormArray) - 後續步驟實作 -->
+    <div class="form-field">
+      <label>標籤</label>
+      <p class="placeholder-text">（將在步驟6實作標籤系統）</p>
+    </div>
+
+    <!-- 表單狀態顯示（方便學習時觀察） -->
+    <div class="form-status">
+      <p>表單狀態: {{ taskForm.valid ? '有效' : '無效' }}</p>
+      <p>表單值: {{ taskForm.value | json }}</p>
+    </div>
+  </form>
+</div>
