@@ -62,9 +62,9 @@ src/app/
 - [x] 刪除任務功能
 
 ### 4. 任務建立/編輯面板
-- [ ] 基礎欄位：標題
-- [ ] 基礎欄位：描述
-- [ ] 基礎欄位：優先級（Select）
+- [x] 基礎欄位：標題
+- [x] 基礎欄位：描述
+- [x] 基礎欄位：優先級（Select）
 - [ ] **動態子任務 (Sub-tasks)**：可以動態新增/刪除多個子任務列
 - [ ] **標籤系統 (Tags)**：輸入標籤並按 Enter 加入（處理陣列數據）
 
@@ -128,10 +128,10 @@ export class TaskForm { }
 > **React 對照：** 類似一個使用 `useEffect` 載入資料並用 `map` 渲染列表的組件。
 
 ### 步驟 5：建立基礎 Form Structure (FormBuilder)
-- [ ] 使用 `FormBuilder` 定義表單結構
-- [ ] 學習 `FormControl` (單一欄位)
-- [ ] 學習 `FormGroup` (物件)
-- [ ] 學習 `FormArray` (陣列)
+- [x] 使用 `FormBuilder` 定義表單結構
+- [x] 學習 `FormControl` (單一欄位)
+- [x] 學習 `FormGroup` (物件)
+- [x] 學習 `FormArray` (陣列)
 
 ```typescript
 fb = inject(FormBuilder);
