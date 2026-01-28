@@ -1,7 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormArray, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+
+type SubTaskFormGroup = FormGroup<{
+  id: FormControl<string>;
+  content: FormControl<string>;
+  completed: FormControl<boolean>;
+}>;
 
 @Component({
   selector: 'app-task-form',
@@ -17,24 +29,24 @@ export class TaskForm {
   taskForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(5)]],
     description: [''],
-    priority: ['medium' as 'low' | 'medium' | 'high'],
-    subTasks: this.fb.array([]),
-    tags: this.fb.array([]),
+    priority: this.fb.control<'low' | 'medium' | 'high'>('medium'),
+    subTasks: this.fb.array<SubTaskFormGroup>([]),
+    tags: this.fb.array<FormControl<string>>([]),
   });
 
-  get subTasks(): FormArray {
-    return this.taskForm.get('subTasks') as FormArray;
+  get subTasks() {
+    return this.taskForm.controls.subTasks;
   }
 
-  get tags(): FormArray {
-    return this.taskForm.get('tags') as FormArray;
+  get tags() {
+    return this.taskForm.controls.tags;
   }
 
   addSubTask(): void {
-    const subTask = this.fb.group({
-      id: [crypto.randomUUID()],
-      content: [''],
-      completed: [false]
+    const subTask = this.fb.nonNullable.group({
+      id: crypto.randomUUID() as string,
+      content: '',
+      completed: false,
     });
     this.subTasks.push(subTask);
   }
@@ -46,7 +58,7 @@ export class TaskForm {
   addTag(event: KeyboardEvent): void {
     if (event.key === 'Enter' && this.tagInput.trim()) {
       event.preventDefault();
-      this.tags.push(this.fb.control(this.tagInput.trim()));
+      this.tags.push(this.fb.nonNullable.control(this.tagInput.trim()));
       this.tagInput = '';
     }
   }
