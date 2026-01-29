@@ -80,8 +80,8 @@ src/app/
 - [x] 自定義驗證器：例如「禁止包含特定關鍵字」
 
 ### 7. 異步狀態同步
-- [ ] 當表單數值改變時，即時顯示「草稿已保存」提示
-- [ ] 監聽整個表單的 `statusChanges`
+- [x] 當表單數值改變時，即時顯示「草稿已保存」提示
+- [x] 監聽整個表單的 `statusChanges`
 
 ---
 
@@ -160,11 +160,11 @@ taskForm = this.fb.group({
 - [x] 了解如何回傳 `ValidatorFn`
 - [x] 在模板中透過 `taskForm.get('title')?.errors` 顯示錯誤訊息
 
-### 步驟 8：使用 RxJS 監聽表單變化 + 自動存檔
-- [ ] 使用 `this.taskForm.valueChanges.pipe(debounceTime(500))` 實作自動存檔功能
-- [ ] 將草稿存入 LocalStorage
-- [ ] 顯示「草稿已保存」提示
-- [ ] 當表單狀態變為 `INVALID` 時，禁用提交按鈕
+### 步驟 8：使用 RxJS 監聯表單變化 + 自動存檔
+- [x] 使用 `this.taskForm.valueChanges.pipe(debounceTime(500))` 實作自動存檔功能
+- [x] 將草稿存入 LocalStorage
+- [x] 顯示「草稿已保存」提示
+- [x] 當表單狀態變為 `INVALID` 時，禁用提交按鈕
 
 ### 步驟 9：完善 UI 與錯誤提示
 - [ ] 為每個驗證錯誤顯示對應的錯誤訊息
