@@ -8,6 +8,11 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import {
+  minLengthValidator,
+  forbiddenKeywordsValidator,
+  requiredContentValidator,
+} from '../../validators/task.validators';
 
 type SubTaskFormGroup = FormGroup<{
   id: FormControl<string>;
@@ -27,7 +32,7 @@ export class TaskForm {
   tagInput = '';
 
   taskForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(5)]],
+    title: ['', [Validators.required, minLengthValidator(5), forbiddenKeywordsValidator()]],
     description: [''],
     priority: this.fb.control<'low' | 'medium' | 'high'>('medium'),
     subTasks: this.fb.array<SubTaskFormGroup>([]),
@@ -45,7 +50,7 @@ export class TaskForm {
   addSubTask(): void {
     const subTask = this.fb.nonNullable.group({
       id: crypto.randomUUID() as string,
-      content: '',
+      content: ['', requiredContentValidator()],
       completed: false,
     });
     this.subTasks.push(subTask);
