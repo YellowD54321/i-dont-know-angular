@@ -35,6 +35,8 @@ src/app/
 │   └── task.model.ts          # Task, SubTask 介面
 ├── services/
 │   └── task-storage.ts        # LocalStorage CRUD
+├── validators/
+│   └── task.validators.ts     # 自定義表單驗證器
 ├── components/
 │   ├── task-list/             # 列表頁
 │   └── task-form/             # 表單頁（新增/編輯共用）
@@ -73,9 +75,9 @@ src/app/
 - [ ] 編輯模式需從 LocalStorage 載入現有資料並 `patchValue` 到表單
 
 ### 6. 即時驗證系統
-- [ ] 標題必填且長度需大於 5
-- [ ] 子任務如果存在，內容不可為空
-- [ ] 自定義驗證器：例如「禁止包含特定關鍵字」
+- [x] 標題必填且長度需大於 5
+- [x] 子任務如果存在，內容不可為空
+- [x] 自定義驗證器：例如「禁止包含特定關鍵字」
 
 ### 7. 異步狀態同步
 - [ ] 當表單數值改變時，即時顯示「草稿已保存」提示
@@ -152,11 +154,11 @@ taskForm = this.fb.group({
 - [x] 實作標籤輸入框，按 Enter 加入標籤到 `tags` FormArray
 
 ### 步驟 7：自定義驗證器 (Custom Validators)
-- [ ] 寫一個 Function 來檢查標題長度
-- [ ] 實作「禁止包含特定關鍵字」驗證器
-- [ ] 檢查子任務內容不可為空
-- [ ] 了解如何回傳 `ValidatorFn`
-- [ ] 在模板中透過 `taskForm.get('title')?.errors` 顯示錯誤訊息
+- [x] 寫一個 Function 來檢查標題長度
+- [x] 實作「禁止包含特定關鍵字」驗證器
+- [x] 檢查子任務內容不可為空
+- [x] 了解如何回傳 `ValidatorFn`
+- [x] 在模板中透過 `taskForm.get('title')?.errors` 顯示錯誤訊息
 
 ### 步驟 8：使用 RxJS 監聽表單變化 + 自動存檔
 - [ ] 使用 `this.taskForm.valueChanges.pipe(debounceTime(500))` 實作自動存檔功能
