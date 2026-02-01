@@ -8,6 +8,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil, debounceTime, tap } from 'rxjs';
 import {
   minLengthValidator,
@@ -32,10 +33,14 @@ type SubTaskFormGroup = FormGroup<{
 export class TaskForm implements OnInit, OnDestroy {
   private fb = inject(FormBuilder);
   private taskStorage = inject(TaskStorageService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private destroy$ = new Subject<void>();
 
   tagInput = '';
   draftSaved = signal(false);
+  isEditMode = signal(false);
+  private taskId: string | null = null;
   private draftSavedTimeout: ReturnType<typeof setTimeout> | null = null;
 
   taskForm = this.fb.group({
@@ -47,6 +52,14 @@ export class TaskForm implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
+    // 檢查是否為編輯模式
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.taskId = id;
+      this.isEditMode.set(true);
+      this.loadTaskForEdit(id);
+    }
+
     // 監聽表單值變化，使用 debounceTime 自動存檔草稿
     this.taskForm.valueChanges
       .pipe(
@@ -58,6 +71,38 @@ export class TaskForm implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  private loadTaskForEdit(id: string): void {
+    const task = this.taskStorage.getTaskById(id);
+    if (!task) {
+      this.router.navigate(['/tasks']);
+      return;
+    }
+
+    // 使用 patchValue 填入基本欄位
+    this.taskForm.patchValue({
+      title: task.title,
+      description: task.description,
+      priority: task.priority,
+    });
+
+    // 動態建立並填入 subTasks FormArray
+    this.subTasks.clear();
+    task.subTasks.forEach(subTask => {
+      const subTaskGroup = this.fb.nonNullable.group({
+        id: subTask.id,
+        content: [subTask.content, requiredContentValidator()],
+        completed: subTask.completed,
+      });
+      this.subTasks.push(subTaskGroup);
+    });
+
+    // 動態建立並填入 tags FormArray
+    this.tags.clear();
+    task.tags.forEach(tag => {
+      this.tags.push(this.fb.nonNullable.control(tag));
+    });
   }
 
   ngOnDestroy(): void {
@@ -111,6 +156,22 @@ export class TaskForm implements OnInit, OnDestroy {
 
   removeTag(index: number): void {
     this.tags.removeAt(index);
+  }
+
+  onSubmit(): void {
+    if (this.taskForm.invalid) return;
+
+    const formValue = this.taskForm.getRawValue();
+    this.taskStorage.saveTask({
+      id: this.taskId || undefined,
+      title: formValue.title || '',
+      description: formValue.description || '',
+      priority: formValue.priority || 'medium',
+      subTasks: formValue.subTasks || [],
+      tags: formValue.tags || [],
+    });
+    this.taskStorage.clearDraft();
+    this.router.navigate(['/tasks']);
   }
 }
 

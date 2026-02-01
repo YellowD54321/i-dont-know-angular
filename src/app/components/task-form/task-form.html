@@ -2,7 +2,13 @@
   <div class="max-w-2xl mx-auto">
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
-      <h1 class="text-3xl font-bold text-white tracking-tight">任務表單</h1>
+      <h1 class="text-3xl font-bold text-white tracking-tight">
+        @if (isEditMode()) {
+          編輯任務
+        } @else {
+          新增任務
+        }
+      </h1>
       <!-- 草稿已保存提示 -->
       @if (draftSaved()) {
         <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full text-sm animate-fade-in">
@@ -16,7 +22,7 @@
 
     <!-- Form Card -->
     <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-slate-600 hover:shadow-xl hover:shadow-slate-900/50 transition-all duration-200">
-      <form [formGroup]="taskForm" class="space-y-6">
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="space-y-6">
         <!-- 標題欄位 (FormControl) -->
         <div class="space-y-2">
           <label for="title" class="block text-sm font-medium text-slate-300">標題</label>
