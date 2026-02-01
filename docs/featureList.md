@@ -189,5 +189,5 @@ taskForm = this.fb.group({
 
 ## 🛠️ 推薦工具
 
-- [ ] **Tailwind CSS**: 快速刻出側邊抽屜式（Drawer）的編輯介面
+- [x] **Tailwind CSS**: 快速刻出側邊抽屜式（Drawer）的編輯介面
 - [ ] **Lucide Angular**: 圖標庫，適合用在任務分類上
