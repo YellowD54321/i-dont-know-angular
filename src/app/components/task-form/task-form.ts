@@ -10,6 +10,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil, debounceTime, tap } from 'rxjs';
+import { LucideAngularModule, Check, TriangleAlert, Ban, Trash2, Plus, X } from 'lucide-angular';
 import {
   minLengthValidator,
   forbiddenKeywordsValidator,
@@ -26,7 +27,7 @@ type SubTaskFormGroup = FormGroup<{
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, JsonPipe],
+  imports: [ReactiveFormsModule, FormsModule, JsonPipe, LucideAngularModule],
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })
@@ -36,6 +37,13 @@ export class TaskForm implements OnInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private destroy$ = new Subject<void>();
+
+  readonly Check = Check;
+  readonly TriangleAlert = TriangleAlert;
+  readonly Ban = Ban;
+  readonly Trash2 = Trash2;
+  readonly Plus = Plus;
+  readonly X = X;
 
   tagInput = '';
   draftSaved = signal(false);
