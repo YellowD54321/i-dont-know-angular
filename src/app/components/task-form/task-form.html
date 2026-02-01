@@ -15,7 +15,7 @@
     </div>
 
     <!-- Form Card -->
-    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6">
+    <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-slate-600 hover:shadow-xl hover:shadow-slate-900/50 transition-all duration-200">
       <form [formGroup]="taskForm" class="space-y-6">
         <!-- 標題欄位 (FormControl) -->
         <div class="space-y-2">
@@ -26,15 +26,15 @@
             formControlName="title"
             placeholder="請輸入任務標題"
             class="w-full px-4 py-3 bg-slate-900/50 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-colors duration-200"
-            [class.border-slate-700]="!taskForm.get('title')?.errors || taskForm.get('title')?.pristine"
-            [class.focus:border-emerald-500]="!taskForm.get('title')?.errors || taskForm.get('title')?.pristine"
-            [class.focus:ring-emerald-500]="!taskForm.get('title')?.errors || taskForm.get('title')?.pristine"
-            [class.border-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty"
-            [class.focus:border-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty"
-            [class.focus:ring-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty"
+            [class.border-slate-700]="!taskForm.get('title')?.errors || !taskForm.get('title')?.dirty || !taskForm.get('title')?.touched"
+            [class.focus:border-emerald-500]="!taskForm.get('title')?.errors || !taskForm.get('title')?.dirty || !taskForm.get('title')?.touched"
+            [class.focus:ring-emerald-500]="!taskForm.get('title')?.errors || !taskForm.get('title')?.dirty || !taskForm.get('title')?.touched"
+            [class.border-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty && taskForm.get('title')?.touched"
+            [class.focus:border-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty && taskForm.get('title')?.touched"
+            [class.focus:ring-rose-500]="taskForm.get('title')?.errors && taskForm.get('title')?.dirty && taskForm.get('title')?.touched"
           />
           <!-- 錯誤訊息顯示 -->
-          @if (taskForm.get('title')?.errors && taskForm.get('title')?.dirty) {
+          @if (taskForm.get('title')?.errors && taskForm.get('title')?.dirty && taskForm.get('title')?.touched) {
             <div class="space-y-1">
               @if (taskForm.get('title')?.errors?.['required']) {
                 <p class="text-sm text-rose-400 flex items-center gap-1">
@@ -97,8 +97,8 @@
             @for (subTask of subTasks.controls; track subTask; let i = $index) {
               <div [formGroupName]="i" class="space-y-2">
                 <div class="flex items-center gap-3 p-3 bg-slate-900/30 border rounded-lg group"
-                  [class.border-slate-700]="!subTask.get('content')?.errors || subTask.get('content')?.pristine"
-                  [class.border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty"
+                  [class.border-slate-700]="!subTask.get('content')?.errors || !subTask.get('content')?.dirty || !subTask.get('content')?.touched"
+                  [class.border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty && subTask.get('content')?.touched"
                 >
                   <input
                     type="checkbox"
@@ -110,12 +110,12 @@
                     formControlName="content"
                     placeholder="輸入子任務內容"
                     class="flex-1 px-3 py-2 bg-slate-800/50 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-colors duration-200"
-                    [class.border-slate-700]="!subTask.get('content')?.errors || subTask.get('content')?.pristine"
-                    [class.focus:border-emerald-500]="!subTask.get('content')?.errors || subTask.get('content')?.pristine"
-                    [class.focus:ring-emerald-500]="!subTask.get('content')?.errors || subTask.get('content')?.pristine"
-                    [class.border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty"
-                    [class.focus:border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty"
-                    [class.focus:ring-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty"
+                    [class.border-slate-700]="!subTask.get('content')?.errors || !subTask.get('content')?.dirty || !subTask.get('content')?.touched"
+                    [class.focus:border-emerald-500]="!subTask.get('content')?.errors || !subTask.get('content')?.dirty || !subTask.get('content')?.touched"
+                    [class.focus:ring-emerald-500]="!subTask.get('content')?.errors || !subTask.get('content')?.dirty || !subTask.get('content')?.touched"
+                    [class.border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty && subTask.get('content')?.touched"
+                    [class.focus:border-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty && subTask.get('content')?.touched"
+                    [class.focus:ring-rose-500]="subTask.get('content')?.errors && subTask.get('content')?.dirty && subTask.get('content')?.touched"
                   />
                   <button
                     type="button"
@@ -128,7 +128,7 @@
                   </button>
                 </div>
                 <!-- 子任務錯誤訊息 -->
-                @if (subTask.get('content')?.errors?.['requiredContent'] && subTask.get('content')?.dirty) {
+                @if (subTask.get('content')?.errors?.['requiredContent'] && subTask.get('content')?.dirty && subTask.get('content')?.touched) {
                   <p class="text-sm text-rose-400 flex items-center gap-1 ml-11">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
